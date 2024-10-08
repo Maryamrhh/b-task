@@ -29,6 +29,10 @@
     "sourceMap": false,
     "strict": true,
     "target": "es2022",
-    "verbatimModuleSyntax": false
+    "verbatimModuleSyntax": false,
+    "paths": {
+      "@b-task/infrastructure": ["libs/infrastructure/src/index.ts"],
+      "@b-task/persistence": ["libs/persistence/src/index.ts"]
+    }
   }
 }
