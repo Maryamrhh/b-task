@@ -1,0 +1,31 @@
+version: "3.1"
+
+services:
+  postgres_database:
+    container_name: b_task_postgres
+    image: postgres:15.0
+    environment:
+      POSTGRES_PASSWORD: adminpw
+      POSTGRES_USER: admin
+      POSTGRES_DB: admindb
+    ports:
+      - 5432:5432
+    networks:
+      - b_task_network
+
+  pgadmin:
+    container_name: b_task_pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: adminpw
+    ports:
+      - 5050:80
+    depends_on:
+      - postgres_database
+    networks:
+      - b_task_network
+
+networks:
+ b_task_network:
+    driver: bridge
