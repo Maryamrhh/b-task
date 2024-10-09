@@ -8,7 +8,6 @@ export class EncryptionService {
   private readonly iv = crypto.randomBytes(16);
 
   encrypt(text: string): string {
-    console.log(this.secretKey)
     const cipher = crypto.createCipheriv(this.algorithm, this.secretKey, this.iv);
     const encrypted = Buffer.concat([cipher.update(text), cipher.final()]);
     return `${this.iv.toString('hex')}:${encrypted.toString('hex')}`;
