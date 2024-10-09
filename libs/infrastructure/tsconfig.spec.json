@@ -1,14 +1,19 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "../../dist/out-tsc",
-    "module": "commonjs",
+    "module": "NodeNext",
     "types": ["jest", "node"]
   },
   "include": [
     "jest.config.ts",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "**/*.spec.ts",
+    "./interfaces/city-data.interface.ts",
+    "./dtos/*.dto.ts",
+    "src/**/*.spec.ts", "src/lib/**/*"
   ]
 }
