@@ -21,8 +21,6 @@ export class UserService {
 
   async signUp(createUserDto: CreateUserDto): Promise<{ token: string }> {
     const eM = new EntityManager(this.dataSource);
-    console.log("1")
-
     const encryption = new EncryptionService()
     const { username, password } = createUserDto;
 
@@ -39,7 +37,6 @@ export class UserService {
 
     // Hash the password
     const hashedPassword = await encryption.encrypt(password);
-    console.log("1")
 
     const newUser = eM.create(User,{
       username,
@@ -47,7 +44,6 @@ export class UserService {
     });
 
     await eM.save(User,newUser);
-    console.log("1")
 
     const token = await this.jwtService.signAsync({ sub: newUser.id }, { expiresIn: '15m',
       secret: process.env['JWT_SECRET'],});
@@ -57,11 +53,11 @@ export class UserService {
   }
 
   async getUserData(
-    username: string
+    userId: string
   ): Promise<{ id: string; username: string; password: string }> {
     const eM = new EntityManager(this.dataSource);
     const decryption = new DecryptionService()
-    const user = await eM.findOne(User,{ where: { username } });
+    const user = await eM.findOne(User,{ where: { id: userId } });
 
     if (!user) {
       throw new NotFoundException('User not found');
