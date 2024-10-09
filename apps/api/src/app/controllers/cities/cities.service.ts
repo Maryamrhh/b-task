@@ -46,7 +46,6 @@ export class CityService {
       take: limit,
       skip: (page - 1) * limit,
     });
-    console.log(results)
 
 
     const newResult = results.map((city) => {

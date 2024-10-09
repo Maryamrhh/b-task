@@ -9,18 +9,17 @@ export class CityController {
   constructor(private readonly cityService: CityService) {}
 
   @Get('my-requests')
-  @UseGuards(JwtAuthGuard) // Assuming JWT Auth is being used
+  @UseGuards(JwtAuthGuard) 
   async getMyRequests(
     @Query('page') page = 1,
     @Query('limit') limit = 10,
     @AuthUser() user: User
   ) {
-    console.log('1');
     return await this.cityService.getMyRequests(user, page, limit);
   }
 
   @Get(':postCode')
-  @UseGuards(JwtAuthGuard) // Assuming JWT Auth is being used
+  @UseGuards(JwtAuthGuard) 
   async getCityByPostCode(
     @Param('postCode') postCode: string,
     @AuthUser() userId: string

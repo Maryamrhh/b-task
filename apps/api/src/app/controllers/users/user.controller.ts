@@ -23,6 +23,6 @@ import { User } from '@b-task/persistence';
     @Get('me')
     @UseGuards(JwtAuthGuard) 
     async getMe(@AuthUser() user: User) {
-      return await this.userService.getUserData(user.username);
+      return await this.userService.getUserData(user.id);
     }
   }
